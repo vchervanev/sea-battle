@@ -1,6 +1,6 @@
 * [x] empty project
 * [x] clickable board (no logic)
-* [] setup prettier
+* [x] setup prettier
 * [] basic tests & CI
 * [] hardcoded game setup & status transition (missed/hit)
 * [] destroyed ships & empty cells support

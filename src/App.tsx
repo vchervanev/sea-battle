@@ -1,8 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Board from './Board';
-
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
+import Board from './Board'
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
         <Board />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

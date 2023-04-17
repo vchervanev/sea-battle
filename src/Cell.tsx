@@ -1,4 +1,3 @@
-
 export enum Status {
   Unknown,
   Miss,
@@ -7,12 +6,14 @@ export enum Status {
 }
 
 type CellProps = {
-  onClick: (row: number, col: number) => void,
-  col: number,
-  row: number,
+  onClick: (row: number, col: number) => void
+  col: number
+  row: number
   status: Status
 }
 
 export const Cell = (props: CellProps) => {
-  return <td onClick={()=>props.onClick(props.row, props.col)}>{props.status}</td>
+  return (
+    <td onClick={() => props.onClick(props.row, props.col)}>{props.status}</td>
+  )
 }
