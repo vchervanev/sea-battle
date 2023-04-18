@@ -1,4 +1,5 @@
 import React, { ReactNode, useReducer, useState } from 'react'
+import { Battle } from './battle'
 import boardReducer from './boardReducer'
 import * as cell from './Cell'
 
@@ -27,14 +28,18 @@ const generate = (count: number, generator: (i: number) => ReactNode) => {
     })
 }
 
-const Board = () => {
+type BoardProps = {
+  battle: Battle
+}
+
+const Board = (props: BoardProps) => {
   const [board, dispatch] = useReducer(boardReducer, defaultState())
 
   const status = (row: number, col: number): cell.Status =>
     board['cell' + (row * 10 + col)]
 
   const onClick = (row: number, col: number) => {
-    dispatch({ type: 'fire', row, col })
+    dispatch({ type: 'fire', battle: props.battle, row, col })
   }
 
   return (

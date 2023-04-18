@@ -2,7 +2,7 @@
 * [x] clickable board (no logic)
 * [x] setup prettier
 * [] basic tests & CI
-* [] hardcoded game setup & status transition (missed/hit)
+* [~] hardcoded game setup & status transition (missed/hit)
 * [] destroyed ships & empty cells support
 * [] basic CSS
 * [] randomized game setup

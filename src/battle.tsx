@@ -81,7 +81,6 @@ class RandomBattle implements Battle {
         return true
       }
     })
-    console.log({ result })
     return result
   }
 
