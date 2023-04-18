@@ -33,13 +33,17 @@ class Ship {
     this.hp = size
   }
 
+  hitTest(row: number, col: number): boolean {
+    return (
+      row >= this.row &&
+      row <= this.maxRow &&
+      col >= this.col &&
+      col <= this.maxCol
+    )
+  }
+
   fire(row: number, col: number): FireResult {
-    if (
-      row < this.row ||
-      row > this.maxRow ||
-      col < this.col ||
-      col > this.maxCol
-    ) {
+    if (!this.hitTest(row, col)) {
       return FireResult.Miss
     }
 
@@ -69,19 +73,22 @@ class RandomBattle implements Battle {
   }
 
   fire(row: number, col: number): FireResult {
-    let result = FireResult.Miss
+    const ship = this.findShip(row, col)
 
-    this.ships.find((ship) => {
-      result = ship.fire(row, col)
+    if (ship == null) {
+      return FireResult.Miss
+    }
 
-      if (result == FireResult.Destroyed) {
-        this.activeShips--
-      }
-      if (result != FireResult.Miss) {
-        return true
-      }
-    })
+    const result = ship.fire(row, col)
+    if (result == FireResult.Destroyed) {
+      this.activeShips--
+    }
+
     return result
+  }
+
+  findShip(row: number, col: number): Ship | null {
+    return this.ships.find((ship) => ship.hitTest(row, col)) || null
   }
 
   isGameOver(): boolean {
