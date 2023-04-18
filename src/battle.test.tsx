@@ -9,12 +9,15 @@ describe('Ship', () => {
   it('fire vertical', () => {
     const s = ship({})
     expect(s.fire(0, 0)).toBe(FireResult.Miss)
+    expect(s.fire(5, 3)).toBe(FireResult.Miss)
     expect(s.fire(3, 3)).toBe(FireResult.Hit)
     expect(s.fire(4, 3)).toBe(FireResult.Destroyed)
   })
 
   it('fire horizontal', () => {
     const s = ship({ vertical: false })
+    expect(s.fire(3, 2)).toBe(FireResult.Miss)
+    expect(s.fire(3, 5)).toBe(FireResult.Miss)
     expect(s.fire(3, 3)).toBe(FireResult.Hit)
     expect(s.fire(3, 4)).toBe(FireResult.Destroyed)
   })

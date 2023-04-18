@@ -28,8 +28,8 @@ class Ship {
     this.position = vertical ? Position.Vertical : Position.Horizontal
     this.hits = []
 
-    this.maxRow = vertical ? row + size : row
-    this.maxCol = vertical ? col : col + size
+    this.maxRow = vertical ? row + size - 1 : row
+    this.maxCol = vertical ? col : col + size - 1
     this.hp = size
   }
 
