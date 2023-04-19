@@ -13,23 +13,33 @@ type FireTaskType = {
 
 const boardReducer = (boardState: BoardState, task: FireTaskType) => {
   if (task.type == 'fire') {
-    const key = 'cell' + (task.row * 10 + task.col)
     const fireResult = task.battle.fire(task.row, task.col)
-    let status
+    let cells: number[][] = []
+    let status: Status
+
     switch (fireResult) {
       case FireResult.Miss:
         status = Status.Miss
+        cells.push([task.row, task.col])
         break
       case FireResult.Hit:
         status = Status.Hit
+        cells.push([task.row, task.col])
         break
       case FireResult.Destroyed:
+        const ship = task.battle.getDestroyedShip(task.row, task.col)
         status = Status.Killed
+        cells = ship.cells()
         break
       default:
         status = Status.Unknown
     }
-    boardState = { ...boardState, [key]: status }
+    const newStatuses: { [key: string]: Status } = {}
+    cells.forEach(([row, col]) => {
+      const key = 'cell' + (row * 10 + col)
+      newStatuses[key] = status
+    })
+    boardState = { ...boardState, ...newStatuses  }
   }
   return boardState
 }

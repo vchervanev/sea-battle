@@ -21,18 +21,38 @@ describe('Ship', () => {
     expect(s.fire(3, 3)).toBe(FireResult.Hit)
     expect(s.fire(3, 4)).toBe(FireResult.Destroyed)
   })
+
+  it('returns cells', () => {
+    const s = ship({})
+    expect(s.cells()).toEqual([
+      [3, 3],
+      [4, 3],
+    ])
+  })
 })
 
-test('Battle', () => {
-  const b = battle()
-  expect(b.fire(5, 5)).toBe(FireResult.Miss)
+describe('Battle', () => {
+  test('fire', () => {
+    const b = battle()
+    expect(b.fire(5, 5)).toBe(FireResult.Miss)
 
-  expect(b.fire(0, 0)).toBe(FireResult.Hit)
-  expect(b.fire(2, 0)).toBe(FireResult.Hit)
-  expect(b.fire(1, 0)).toBe(FireResult.Destroyed)
-  expect(b.isGameOver()).toBeFalsy()
+    expect(b.fire(0, 0)).toBe(FireResult.Hit)
+    expect(b.fire(2, 0)).toBe(FireResult.Hit)
+    expect(b.fire(1, 0)).toBe(FireResult.Destroyed)
+    expect(b.isGameOver()).toBeFalsy()
 
-  expect(b.fire(2, 3)).toBe(FireResult.Hit)
-  expect(b.fire(2, 2)).toBe(FireResult.Destroyed)
-  expect(b.isGameOver()).toBeTruthy()
+    expect(b.fire(2, 3)).toBe(FireResult.Hit)
+    expect(b.fire(2, 2)).toBe(FireResult.Destroyed)
+    expect(b.isGameOver()).toBeTruthy()
+  })
+
+  test('getDestroyedShip', () => {
+    const b = battle()
+    expect(() => b.getDestroyedShip(0, 0)).toThrowError('Invalid state')
+    expect(b.fire(2, 3)).toBe(FireResult.Hit)
+    expect(b.fire(2, 2)).toBe(FireResult.Destroyed)
+    expect(b.getDestroyedShip(2, 3)).toEqual(
+      expect.objectContaining({ col: 2, row: 2, hp: 0 }),
+    )
+  })
 })

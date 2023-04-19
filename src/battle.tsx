@@ -5,6 +5,7 @@ export enum FireResult {
 }
 export interface Battle {
   fire: (row: number, col: number) => FireResult
+  getDestroyedShip: (row: number, col: number) => Ship
   isGameOver: () => boolean
 }
 
@@ -62,6 +63,22 @@ class Ship {
   vertical(): boolean {
     return this.position == Position.Vertical
   }
+
+  isAlive(): boolean {
+    return this.hp != 0
+  }
+
+  cells(): number[][] {
+    const result: number[][] = []
+    let [col, row] = [this.col, this.row]
+
+    while (this.maxCol >= col && this.maxRow >= row) {
+      result.push([row, col])
+      this.vertical() ? row++ : col++
+    }
+
+    return result
+  }
 }
 
 class RandomBattle implements Battle {
@@ -93,6 +110,16 @@ class RandomBattle implements Battle {
 
   isGameOver(): boolean {
     return this.activeShips == 0
+  }
+
+  getDestroyedShip(row: number, col: number): Ship {
+    const ship = this.findShip(row, col)
+
+    if (ship == null || ship.isAlive()) {
+      throw 'Invalid state'
+    }
+
+    return ship
   }
 }
 
