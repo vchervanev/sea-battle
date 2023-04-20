@@ -1,3 +1,4 @@
+import './Board.css'
 import React, { ReactNode, useReducer, useState } from 'react'
 import { Battle } from './battle'
 import boardReducer from './boardReducer'
@@ -43,11 +44,11 @@ const Board = (props: BoardProps) => {
   }
 
   return (
-    <table>
+    <table className="board">
       <tbody>
-        {generate(5, (row) => (
+        {generate(10, (row) => (
           <tr key={row}>
-            {generate(5, (col) => (
+            {generate(10, (col) => (
               <cell.Cell
                 key={row * 10 + col}
                 onClick={onClick}

@@ -12,8 +12,24 @@ type CellProps = {
   status: Status
 }
 
+const content: { [key: number]: string } = {
+  [Status.Killed]: '☠️',
+  [Status.Hit]: '🔥',
+  [Status.Miss]: '⊙',
+}
+
 export const Cell = (props: CellProps) => {
+  let className = ''
+  let fire = () => {}
+
+  if (props.status == Status.Unknown) {
+    className = 'active'
+    fire = () => props.onClick(props.row, props.col)
+  }
+
   return (
-    <td onClick={() => props.onClick(props.row, props.col)}>{props.status}</td>
+    <td className={className} onClick={fire}>
+      {content[props.status]}
+    </td>
   )
 }

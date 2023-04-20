@@ -9,11 +9,9 @@ function App() {
   const b2 = new RandomBattle()
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Board battle={b1} />
-        <Board battle={b2} />
-      </header>
+    <div className="game-board">
+      <Board battle={b1} />
+      <Board battle={b2} />
     </div>
   )
 }
