@@ -1,0 +1,25 @@
+.board {
+  padding: 5px;
+  margin: 5px;
+  border-collapse: collapse;
+}
+
+td {
+  border: #CCCCCC;
+  border-style: solid;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+}
+
+td {
+  cursor: default;
+}
+
+td.active {
+  cursor: crosshair;
+}
+
+td:hover.active {
+  background: #FFFFAA;
+}
