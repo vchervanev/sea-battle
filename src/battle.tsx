@@ -81,11 +81,82 @@ class Ship {
   }
 }
 
+const configuration: { size: number; count: number }[] = [
+  { size: 4, count: 1 },
+  { size: 3, count: 2 },
+  { size: 2, count: 3 },
+  { size: 1, count: 4 },
+]
+
+class BattleBuilder {
+  ships: Ship[]
+  constructor() {
+    this.ships = []
+  }
+
+  run(): Ship[] {
+    configuration.forEach(({ size, count }) => {
+      while (true) {
+        const ship = this.randomShip(size)
+        if (this.isValid(ship)) {
+          this.ships.push(ship)
+          count--
+          if (count == 0) {
+            break
+          }
+        }
+      }
+    })
+
+    return this.ships
+  }
+
+  // 0..9
+  randomInt() {
+    return Math.trunc(Math.random() * 10)
+  }
+
+  randomBool() {
+    return Math.random() < 0.5
+  }
+
+  randomShip(size: number): Ship {
+    return new Ship(this.randomInt(), this.randomInt(), size, this.randomBool())
+  }
+
+  isValid(ship: Ship): boolean {
+    const around = [
+      [0, 0],
+      [-1, 0],
+      [1, 0],
+      [0, -1],
+      [0, 1],
+      [1, 1],
+      [-1, -1],
+      [-1, 1],
+      [1, -1],
+    ]
+
+    return ship
+      .cells()
+      .every(
+        ([row, col]) =>
+          row < 10 &&
+          col < 10 &&
+          this.ships.every((otherShip) =>
+            around.every(
+              ([dx, dy]) => otherShip.hitTest(row + dx, col + dy) == false,
+            ),
+          ),
+      )
+  }
+}
+
 class RandomBattle implements Battle {
   ships: Ship[]
   activeShips: number
   constructor() {
-    this.ships = [new Ship(2, 2, 2, false), new Ship(0, 0, 3, true)]
+    this.ships = new BattleBuilder().run()
     this.activeShips = this.ships.length
   }
 
