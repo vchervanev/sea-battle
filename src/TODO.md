@@ -4,8 +4,8 @@
 - [] basic tests & CI
 - [x] hardcoded game setup
 - [x] destroyed ships support (hit/destroyed transition)
-- [] basic CSS
-- [] randomized game setup
+- [x] basic CSS
+- [x] randomized game setup
 - [] enforce game rules and player turns
 - [] winner, draw, and game restart
 - [] deploy to GitHub Pages
