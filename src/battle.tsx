@@ -7,6 +7,7 @@ export interface Battle {
   fire: (row: number, col: number) => FireResult
   getDestroyedShip: (row: number, col: number) => Ship
   isGameOver: () => boolean
+  hp: () => number
 }
 
 enum Position {
@@ -191,6 +192,10 @@ class RandomBattle implements Battle {
     }
 
     return ship
+  }
+
+  hp(): number {
+    return this.activeShips
   }
 }
 
