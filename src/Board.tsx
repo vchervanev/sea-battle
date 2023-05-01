@@ -60,7 +60,7 @@ const Board = (props: BoardProps) => {
           </tr>
         ))}
         <tr>
-          <td colSpan={10}>{Array(props.battle.hp()).fill('❤️').join(' ')}</td>
+          <td colSpan={10}>{Array(props.battle.hp()).fill('🚢').join(' ')}</td>
         </tr>
       </tbody>
     </table>

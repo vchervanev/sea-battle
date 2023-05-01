@@ -8,7 +8,6 @@ type Props = {}
 type State = {
   battle1: Battle
   battle2: Battle
-  count: number
 }
 
 class App extends React.Component<Props, State> {
@@ -16,9 +15,8 @@ class App extends React.Component<Props, State> {
     super(props)
     const battle1 = new RandomBattle()
     const battle2 = new RandomBattle()
-    const count = 0
 
-    this.state = { battle1, battle2, count }
+    this.state = { battle1, battle2 }
   }
 
   render() {
