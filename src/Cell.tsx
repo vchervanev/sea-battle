@@ -6,6 +6,7 @@ export enum Status {
 }
 
 type CellProps = {
+  active: boolean
   onClick: (row: number, col: number) => void
   col: number
   row: number
@@ -22,7 +23,7 @@ export const Cell = (props: CellProps) => {
   let className = ''
   let fire = () => {}
 
-  if (props.status == Status.Unknown) {
+  if (props.active) {
     className = 'active'
     fire = () => props.onClick(props.row, props.col)
   }

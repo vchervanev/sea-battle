@@ -30,6 +30,7 @@ const generate = (count: number, generator: (i: number) => ReactNode) => {
 }
 
 type BoardProps = {
+  active: boolean
   battle: Battle
 }
 
@@ -43,6 +44,29 @@ const Board = (props: BoardProps) => {
     dispatch({ type: 'fire', battle: props.battle, row, col })
   }
 
+  const active = (row: number, col: number): boolean => {
+    return (
+      status(row, col) == cell.Status.Unknown &&
+      [
+        [0, 1],
+        [1, 1],
+        [1, 0],
+        [1, -1],
+        [0, -1],
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+      ].every(([dr, dc]) => {
+        const r = row + dr
+        const c = col + dc
+
+        return (
+          r < 0 || c < 0 || r > 9 || c > 9 || status(r, c) != cell.Status.Killed
+        )
+      })
+    )
+  }
+
   return (
     <table className="board">
       <tbody>
@@ -51,6 +75,7 @@ const Board = (props: BoardProps) => {
             {generate(10, (col) => (
               <cell.Cell
                 key={row * 10 + col}
+                active={props.active && active(row, col)}
                 onClick={onClick}
                 row={row}
                 col={col}

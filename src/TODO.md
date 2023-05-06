@@ -1,11 +1,12 @@
 - [x] empty project
 - [x] clickable board (no logic)
 - [x] setup prettier
-- [] basic tests & CI
+- [x] basic tests
+- [] CI
 - [x] hardcoded game setup
 - [x] destroyed ships support (hit/destroyed transition)
 - [x] basic CSS
 - [x] randomized game setup
-- [] enforce game rules and player turns
+- [x] enforce game rules and player turns
 - [] winner, draw, and game restart
 - [] deploy to GitHub Pages

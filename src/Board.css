@@ -7,6 +7,7 @@
 td {
   border: #CCCCCC;
   border-style: solid;
+  background-color: #f5f5ff;
   height: 30px;
   width: 30px;
   text-align: center;
@@ -17,6 +18,7 @@ td {
 }
 
 td.active {
+  background-color: #e2f2ff;
   cursor: crosshair;
 }
 
