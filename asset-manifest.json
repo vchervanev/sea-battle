@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sea-battle/static/css/main.a84c824d.css",
+    "main.js": "/sea-battle/static/js/main.5b43c462.js",
+    "static/js/787.8f1aff30.chunk.js": "/sea-battle/static/js/787.8f1aff30.chunk.js",
+    "index.html": "/sea-battle/index.html",
+    "main.a84c824d.css.map": "/sea-battle/static/css/main.a84c824d.css.map",
+    "main.5b43c462.js.map": "/sea-battle/static/js/main.5b43c462.js.map",
+    "787.8f1aff30.chunk.js.map": "/sea-battle/static/js/787.8f1aff30.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a84c824d.css",
+    "static/js/main.5b43c462.js"
+  ]
+}
